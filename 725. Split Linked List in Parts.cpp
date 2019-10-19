@@ -1,4 +1,4 @@
-//https://leetcode.com/problems/split-linked-list-in-parts/submissions/
+//https://leetcode.com/problems/split-linked-list-in-parts/
 /**
  * Definition for singly-linked list.
  * struct ListNode {
