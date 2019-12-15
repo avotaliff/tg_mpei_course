@@ -1,5 +1,4 @@
 //https://leetcode.com/problems/last-stone-weight/
-
 class Solution {
 public:
     int left(int i){
