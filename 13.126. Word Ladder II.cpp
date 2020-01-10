@@ -1,5 +1,8 @@
 //https://leetcode.com/problems/word-ladder-ii/
-/*Идея состоит в том, чтобы сначала использовать BFS для поиска от beginWord до endWord и одновременно генерировать сопоставление «слово-ребенок». Затем используем DFS для создание последовательностей.*/
+/*Идея состоит в том, чтобы сначала использовать BFS для поиска от beginWord до endWord и 
+одновременно генерировать сопоставление «слово-ребенок».
+Затем используем DFS для создание последовательностей.*/
+//
 class Solution {
 public:
     vector<vector<string>> findLadders(string beginWord, string endWord, vector<string>& wordList) {
