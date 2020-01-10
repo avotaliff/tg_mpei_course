@@ -1,4 +1,6 @@
 //https://leetcode.com/problems/word-ladder/
+//логичнее всего использовать несортированное множество, по списку: если разница в одну букву, то можем перейти
+//храним текущий путь в очереди.
 class Solution {
 public:
     int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
