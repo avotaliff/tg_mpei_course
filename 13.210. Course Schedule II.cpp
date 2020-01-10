@@ -1,4 +1,8 @@
 //https://leetcode.com/problems/course-schedule-ii/
+//Представим в виде графа. Если бы у нас шло ответвление от одной вершины
+//то значит существует цикл и мы не смогли бы пройти курс, иначе dfs
+//для этого используется топологическая сортировка, означающая, что все ребра направлены в одну сторону.
+//
 class Solution {
 public:
     vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
