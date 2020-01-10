@@ -8,6 +8,8 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+//Дано дерево. Найти значение самого левого узла в самом последнем ряду. По bfs спускаемся. 
+//создадим вектор вершин уровня, в нем [0] элемент
 class Solution {
 public:
     int findBottomLeftValue(TreeNode* root) {
