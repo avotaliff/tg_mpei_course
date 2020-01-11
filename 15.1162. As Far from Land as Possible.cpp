@@ -1,65 +1,38 @@
 //https://leetcode.com/problems/as-far-from-land-as-possible/
+//через обход в ширину проходи по каждой сухопутной ячейке, при этом записывая в очередь все окружающие водные, которые
+//при этом становятся посещенными. В итоге самая дальняя вода соответствует количеству изначально найденных пар расстояния между водой и 
+//землей
 class Solution {
 public:
-
-    bool Check(vector<vector<int>> gr, int a){
-        bool fl = false;
-        int i=0;
-        while (!(fl) && i<gr.size()){
-            int j = 0;
-            while (!(fl) && j<gr[0].size()){
-                if (gr[i][j] != a) fl = true;
-                else j++;
-            }
-            i++;
-        }
-        return fl;
+    int maxDistance(vector<vector<int>>& grid) {
+        int steps = 0;
+        queue<pair<int, int>> q, q1;
+        for (auto i = 0; i < grid.size(); ++i)
+            for (auto j = 0; j < grid[i].size(); ++j)
+                if (grid[i][j] == 1){
+                    q.push({ i - 1, j });
+                    q.push({ i + 1, j });
+                    q.push({ i, j - 1 });
+                    q.push({ i, j + 1 });
+                }
+        while (!q.empty()) {
+         ++steps;
+        while (!q.empty()) {
+        int i = q.front().first;
+        int j = q.front().second;
+        q.pop();
+      if (i >= 0 && j >= 0 && 
+          i < grid.size() && j < grid[i].size()
+          && grid[i][j] == 0) {
+        grid[i][j] = steps;
+        q1.push({ i - 1, j });
+        q1.push({ i + 1, j });
+        q1.push({ i, j - 1 }); 
+        q1.push({ i, j + 1 });
+      }
     }
-
-int maxDistance(vector<vector<int>> & grid) {
-    if (Check(grid, grid[0][0]) == false) return -1;
-    int dx[] = {-1, 1, 0, 0};
-    int dy[] = {0, 0, -1, 1};
-
-int n = grid.size();
-vector<vector<int>> x(n, vector<int>(n, INT_MAX));
-
-queue<pair<int,int>> q;
-
-for(int i = 0; i<n; i++)
-    for(int j = 0; j<n; j++)
-        if (grid[i][j] == 1) {
-            q.push({i,j});
-            x[i][j] = 0;
-        }
-
-while (!q.empty()){
-    auto p = q.front();
-    q.pop();
-    
-    for(int i = 0; i<4; i++){
-        int y = p.first + dx[i];
-        int z = p.second + dy[i];
-
-        if (y>=0 && z>=0 && y<n && z<n && grid[y][z]!=1){
-            int dist = 1 + x[p.first][p.second];
-            if (x[y][z] > dist){
-                x[y][z] = dist;
-                q.push({y,z});
-            }
-        }
+    swap(q1, q);
     }
-}
-
-int d = 0;
-
-for (int i = 0; i<n; i++)
-    for (int j = 0; j<n; j++){
-        if (grid[i][j]==0&&x[i][j]!=INT_MAX) d = max(d, x[i][j]);
-}
-
-return d;
-
-
-}
+  return steps == 1 ? -1 : steps - 1;
+    }    
 };
